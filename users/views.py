@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework import permissions
 from rest_framework.response import Response
 
 from users.serializers import UserSerializer ,CustomTokenObtainPairSerializer
@@ -21,3 +22,16 @@ class UserView(APIView):
 # jwt공식문서 참조 (커스텀마이징)
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    
+
+# login 확인 하는 함수
+class mockView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self,request):
+        return Response("get response")
+    
+    def post(self,requst):
+        user = requst.user
+        user.is_admin =True
+        user.save()
+        return Response("어드민 유저로 변경")
