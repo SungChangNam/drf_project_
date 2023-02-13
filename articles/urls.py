@@ -10,3 +10,4 @@ urlpatterns = [
     path("like/", views.LikeView.as_view(), name="like_view"), #좋아요
     path("unlike/", views.UnLikeView.as_view(), name="unlike_view"), #싫어요
 ]
+
