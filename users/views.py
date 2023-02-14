@@ -27,11 +27,14 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 # login 확인 하는 함수
 class mockView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    def get(self,request):
-        return Response("get response")
     
-    def post(self,requst):
-        user = requst.user
+    def get(self,request):
+        user = request.user
         user.is_admin =True
         user.save()
         return Response("어드민 유저로 변경")
+    
+    
+    
+    
+    
