@@ -9,6 +9,8 @@ class Article(models.Model):
     image = models.ImageField(blank=True, upload_to='%y/%m/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes =models.ManyToManyField(User,related_name="likes_articles")
+    unlikes =models.ManyToManyField(User,related_name="unlikes_articles")
     
     def __str__(self):
         return str (self.title)
@@ -19,8 +21,11 @@ class Comment(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True) 
+
     
     
     def __str__(self):
         return str (self.content)
+    
+    
